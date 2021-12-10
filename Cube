@@ -1,0 +1,105 @@
+#ifndef Sales_data_H
+#define Sales_data_H
+#include<iostream>
+#include<string>
+class Cube {
+private:
+	int x;
+	int y;
+	int z;
+public:
+	void setx(int _x);
+	void sety(int _y);
+	void setz(int _z);
+	int getx();
+	int gety();
+	int getz();
+	int getareas();
+	int getV();
+	bool iscomm(Cube& a);
+};
+//全局函数
+bool iscomm(Cube& a, Cube& b);
+#endif
+////////////////////////////////CPP文件/////////////////////
+#include<iostream>
+#include<string>
+#include"Sales_data.h"
+//设置
+void Cube::setx(int _x)
+{
+	x = _x;
+}
+void Cube:: sety(int _y)
+{
+	y = _y;
+}
+void Cube:: setz(int _z)
+{
+	z = _z;
+}
+//获取
+int Cube:: getareas() {
+	return 2*(x*z+x*y+z*y);
+}
+int Cube::getV()
+{
+	return x * y * z;
+}
+int Cube::getx()
+{
+	return x;
+}
+int Cube::gety()
+{
+	return y;
+}
+int Cube::getz()
+{
+	return z;
+}
+//判断Cube是否相等
+bool Cube::iscomm(Cube& a)
+{
+	if (x == a.getx() && y == a.gety() && z == a.getz())
+		return 1;
+	return 0;
+}
+//全局函数
+bool iscomm(Cube& a, Cube& b)
+{
+	if (a.getx() == b.getx() && a.gety() == b.gety() && a.getz() == b.getz())
+		return 1;
+	return 0;
+}
+
+///////////////////////////////main文件///////////////////
+#include<iostream>
+#include"Sales_data.h"
+using namespace std;
+int main()
+{
+	Cube cb1;
+	cb1.setx (3);
+	cb1.sety(4);
+	cb1.setz(6);
+	cout<<cb1.getV()<<endl;
+	cout << cb1.getareas() << endl;
+	Cube cb2;
+	cb2.setx(3);
+	cb2.sety(4);
+	cb2.setz(6);
+	if (cb1.iscomm(cb2) ){
+		cout<<"两立方体相等"<<endl;
+	}
+	else {
+		cout << "两立方体不相等" << endl;
+	}
+	if (iscomm(cb1,cb2) ){
+		cout << "两立方体相等" << endl;
+	}
+	else {
+		cout << "两立方体不相等" << endl;
+	}
+	return 0;
+}
